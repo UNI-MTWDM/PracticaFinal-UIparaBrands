@@ -1,7 +1,6 @@
 ﻿using DeLaSalle.Ecommerce.Core.Dto;
 using DeLaSalle.Ecommerce.Core.Http;
 using DeLaSalle.Ecommerce.WebSite.Services.Interfaces;
-using Microsoft.VisualBasic;
 using Newtonsoft.Json;
 
 namespace DeLaSalle.Ecommerce.WebSite.Services;
@@ -14,7 +13,6 @@ public class BrandService : IBrandService
 
     public BrandService()
     {
-        
     }
     
     public async Task<Response<List<BrandDto>>> GetAllAsync()

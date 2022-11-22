@@ -21,14 +21,25 @@
                     <input asp-for="Brand.Description" class="form-control" maxlength="45"/>
                     <spam class="text-danger" asp-validation-for="Brand.Description"></spam>
                 </div>
-
+                
+                @if (Model.Errors.Count > 0)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        <ul>
+                            @foreach (var error in Model.Errors)
+                            {
+                                <li>@error</li>
+                            }
+                        </ul>
+                    </div>
+                }
+                
                 <div class="row">
                     <div class="col-md-12 text-right">
                         <button type="submit" class="btn btn-primary mr-3">Guardar</button>
                         <a asp-page="/Brand/List" class="btn btn-secondary">Cancelar</a>
                     </div>
                 </div>
-                
             </form>
         </div>
         <div class="col-md-1"></div>

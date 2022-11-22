@@ -48,12 +48,16 @@ public class BrandController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Response<BrandDto>>> Post([FromBody] BrandDto brandDto)
     {
-        var response = new Response<BrandDto>()
+        var response = new Response<BrandDto>();
+        if (await _service.ExistByName(brandDto.Name))
         {
-            Data = await _service.SaveAsync(brandDto)
-        };
-        
+            response.Errors.Add($"Brand {brandDto.Name} ya existe");
+            return BadRequest(response);
+        }
+
+        response.Data = await _service.SaveAsync(brandDto);
         return Created($"api/[controller]/{response.Data.Id}", response);
+        
     }
     
     [HttpPut]
@@ -64,6 +68,12 @@ public class BrandController : ControllerBase
         {
             response.Errors.Add("Bran Not Found");
             return NotFound(response);
+        }
+        
+        if (await _service.ExistByName(brandDto.Name, brandDto.Id))
+        {
+            response.Errors.Add($"Brand {brandDto.Name} ya existe");
+            return BadRequest(response);
         }
 
         response.Data = await _service.UpdateAsync(brandDto);

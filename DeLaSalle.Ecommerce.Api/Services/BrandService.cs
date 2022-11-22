@@ -19,6 +19,12 @@ public class BrandService : IBrandService
         var brand = await _repository.GetById(id);
         return (brand != null);
     }
+    
+    public async Task<List<BrandDto>> GetAllAsync()
+    {
+        var brands = await _repository.GetAllAsync();
+        return brands.Select(c => new BrandDto(c)).ToList();
+    }
 
     public async Task<BrandDto> SaveAsync(BrandDto brandDto)
     {
@@ -55,13 +61,7 @@ public class BrandService : IBrandService
         return (brandDto);
 
     }
-
-    public async Task<List<BrandDto>> GetAllAsync()
-    {
-        var brands = await _repository.GetAllAsync();
-        return brands.Select(c => new BrandDto(c)).ToList();
-    }
-
+    
     public async Task<bool> DeleteAsync(int id)
     {
         return await _repository.DeleteAsync(id);
@@ -73,5 +73,12 @@ public class BrandService : IBrandService
         if (brand == null)
             throw new Exception("Brand Not Found");
         return new BrandDto(brand);
+    }
+    
+    public async Task<bool> ExistByName(string name, int id = 0)
+    {
+        var brand = await _repository.GetByName(name,id);
+
+        return brand != null;
     }
 }

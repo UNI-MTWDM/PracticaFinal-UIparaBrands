@@ -10,4 +10,5 @@ public interface IBrandService
     Task<List<BrandDto>> GetAllAsync();
     Task<bool> DeleteAsync(int id);
     Task<BrandDto?> GetByIdAsync(int id);
+    Task<bool> ExistByName(string name, int id = 0);
 }

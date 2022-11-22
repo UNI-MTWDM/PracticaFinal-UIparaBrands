@@ -10,6 +10,7 @@ public class Edit : PageModel
 {
     [BindProperty]public BrandDto Brand { get; set; }
     public List<string> Errors { get; set; } = new List<string>();
+    
     private readonly IBrandService _service;
     
     public Edit(IBrandService service)

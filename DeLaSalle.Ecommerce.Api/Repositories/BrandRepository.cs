@@ -57,4 +57,12 @@ public class BrandRepository : IBrandRepository
 
         return brand.IsDeleted ? null : brand;
     }
+
+    public async Task<Brand> GetByName(string name, int id = 0)
+    {
+        var sql = $"SELECT *  FROM Brand WHERE Name = '{name}' AND Id <> {id} ";
+        var categories = 
+            await _dbContext.Connection.QueryAsync<Brand>(sql);
+        return categories.ToList().FirstOrDefault();
+    }
 }
