@@ -1,0 +1,36 @@
+﻿@page "{id:int?}"
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model DeLaSalle.Ecommerce.WebSite.Pages.Brand.Delete
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <h2>Borrar</h2>
+            <form method="post">
+                <input type="hidden" asp-for="Brand.Id"/>
+                <p>@Model.Brand.Id</p>
+                <div class="form-group">
+                    <label asp-for="Brand.Name"></label>
+                    <input readonly asp-for="Brand.Name" class="form-control" maxlength="45"/>
+                    <spam class="text-danger" asp-validation-for="Brand.Name"></spam>
+                </div>
+                
+                <div class="form-group">
+                    <label asp-for="Brand.Description"></label>
+                    <input readonly asp-for="Brand.Description" class="form-control" maxlength="45"/>
+                    <spam class="text-danger" asp-validation-for="Brand.Description"></spam>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <button type="submit" class="btn btn-danger mr-3">Borrar</button>
+                        <a asp-page="/Brand/List" class="btn btn-secondary">Cancelar</a>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>

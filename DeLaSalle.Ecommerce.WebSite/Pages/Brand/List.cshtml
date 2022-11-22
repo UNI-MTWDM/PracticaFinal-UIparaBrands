@@ -1,0 +1,41 @@
+﻿@page
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model ListModel
+
+<div class="container-fluid">
+    <form method="get">
+        <div class="row">
+            <div class="col-md-8"></div>
+            <div class="col-md-4">
+                <br>
+                <button id="btnSearch" class="btn btn-primary mr-3">Buscar</button>
+                <a asp-page=".\Edit" class="btn btn-success">Nuevo</a>
+            </div>
+        </div>
+    </form>
+    
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <table class="table">
+                <tr>
+                    <th>Brand</th>
+                    <th>Descripción</th>
+                    <th>Acciones</th>
+                </tr>
+                @foreach (var brand in @Model.Brand)
+                {
+                    <tr>
+                        <td>@brand.Name</td>
+                        <td>@brand.Description</td>
+                        <td>
+                            <a a-asp-area="" asp-page="/Brand/Edit" asp-route-id="@brand.Id" class="btn btn-primary" role="button">Editar</a>
+                            <a a-asp-area="" asp-page="/Brand/Delete" asp-route-id="@brand.Id" class="btn btn-danger" role="button">Borrar</a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
